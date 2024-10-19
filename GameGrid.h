@@ -8,6 +8,7 @@ public:
 	GameGrid(short rows, short columns);
 	~GameGrid();
 	Grid* levels;
+	short initialPlayerLevel;
 private:
 	short getValue(short difficulty);
 	short getLastLevel();

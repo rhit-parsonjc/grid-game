@@ -14,8 +14,10 @@ GameGrid::GameGrid(short rows, short columns)
 			levels->setElement(row, col, getValue(row + col));
 		}
 	}
-	levels->setElement(0, 0, 6);
+	initialPlayerLevel = 6;
+	levels->setElement(0, 0, initialPlayerLevel);
 	levels->setElement(rows - 1, columns - 1, getLastLevel());
+	levels->setElement(0, 0, 0);
 }
 
 GameGrid::~GameGrid()

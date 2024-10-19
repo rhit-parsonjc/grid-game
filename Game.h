@@ -10,5 +10,7 @@ public:
 	void displayGrid();
 private:
 	GameGrid* levels;
+	short playerRow;
+	short playerCol;
 };
 #endif
