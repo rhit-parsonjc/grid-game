@@ -18,6 +18,7 @@ Game::Game(short rows, short columns)
 	}
 	playerRow = 0;
 	playerCol = 0;
+	playerLevel = levels->initialPlayerLevel;
 }
 
 Game::~Game()
@@ -38,5 +39,37 @@ void Game::displayGrid()
 		}
 		cout << "\n";
 	}
-	cout << "Level " << levels->initialPlayerLevel << "\n";
+	cout << "Player Level: " << playerLevel << "\n";
+	string directionsAllowed = "E/S";
+	if (playerRow == levels->levels->rows - 1)
+		directionsAllowed = "E";
+	if (playerCol == levels->levels->columns - 1)
+		directionsAllowed = "S";
+	cout << "Which direction do you want to go in (" << directionsAllowed << ")? ";
+}
+
+void Game::goDirection(char direction) {
+	short newRow = playerRow;
+	short newCol = playerCol;
+	if (direction == 'E') {
+		newCol++;
+	}
+	else if (direction == 'S') {
+		newRow++;
+	}
+	visible->setElement(newRow, newCol, true);
+	short enemyLevel = levels->levels->getElement(newRow, newCol);
+	cout << "Enemy Level: " << enemyLevel << "\n";
+	if (enemyLevel >= playerLevel) {
+		cout << "Failed to defeat enemy\n";
+		playerRow = 0;
+		playerCol = 0;
+		playerLevel = levels->initialPlayerLevel;
+	}
+	else {
+		cout << "Defeated enemy\n";
+		playerRow = newRow;
+		playerCol = newCol;
+		playerLevel += enemyLevel;
+	}
 }
