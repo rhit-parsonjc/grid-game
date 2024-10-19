@@ -14,7 +14,7 @@ GameGrid::GameGrid(short rows, short columns)
 			levels->setElement(row, col, getValue(row + col));
 		}
 	}
-	initialPlayerLevel = 6;
+	initialPlayerLevel = 10;
 	levels->setElement(0, 0, initialPlayerLevel);
 	levels->setElement(rows - 1, columns - 1, getLastLevel());
 	levels->setElement(0, 0, 0);
@@ -29,7 +29,7 @@ short GameGrid::getValue(short difficulty)
 {
 	short minValue = 2;
 	for (short i = 0; i < difficulty; i++)
-		minValue += (3 * minValue) / 4;
+		minValue += minValue;
 	short value = rand() % minValue + minValue;
 	return value;
 }
@@ -53,7 +53,7 @@ short GameGrid::getLastLevel()
 	}
 	short returnValue = max(
 		maxLevels->getElement(levels->rows - 1, levels->columns - 2),
-		maxLevels->getElement(levels->rows - 2, levels->columns - 1));
+		maxLevels->getElement(levels->rows - 2, levels->columns - 1)) - 1;
 	delete maxLevels;
 	return returnValue;
 }

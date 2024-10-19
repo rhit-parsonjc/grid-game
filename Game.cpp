@@ -9,7 +9,7 @@ Game::Game(short rows, short columns)
 {
 	do {
 		levels = new GameGrid(rows, columns);
-	} while (levels->levels->getElement(rows - 1, columns - 1) == 0);
+	} while (levels->levels->getElement(rows - 1, columns - 1) == -1);
 	visible = new Grid(rows, columns);
 	for (int row = 0; row < rows; row++) {
 		for (int col = 0; col < columns; col++) {
@@ -19,6 +19,7 @@ Game::Game(short rows, short columns)
 	playerRow = 0;
 	playerCol = 0;
 	playerLevel = levels->initialPlayerLevel;
+	gameComplete = false;
 }
 
 Game::~Game()
@@ -32,6 +33,8 @@ void Game::displayGrid()
 		for (short col = 0; col < levels->levels->columns; col++) {
 			if (row == playerRow && col == playerCol)
 				cout << setw(5) << "X";
+			else if (row == 0 && col == 0)
+				cout << setw(5) << " ";
 			else if (visible->getElement(row, col))
 				cout << setw(5) << levels->levels->getElement(row, col);
 			else
@@ -71,5 +74,15 @@ void Game::goDirection(char direction) {
 		playerRow = newRow;
 		playerCol = newCol;
 		playerLevel += enemyLevel;
+		if (playerRow == levels->levels->rows - 1 &&
+			playerCol == levels->levels->columns - 1) {
+			gameComplete = true;
+			cout << "GAME WON!";
+		}
 	}
+}
+
+bool Game::isGameComplete()
+{
+	return gameComplete;
 }
