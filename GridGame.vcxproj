@@ -127,10 +127,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="GridGame.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameGrid.cpp" />
     <ClCompile Include="Grid.cpp" />
+    <ClCompile Include="GridGame.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GameGrid.h" />
     <ClInclude Include="Grid.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
