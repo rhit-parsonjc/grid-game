@@ -10,6 +10,12 @@ Game::Game(short rows, short columns)
 	do {
 		levels = new GameGrid(rows, columns);
 	} while (levels->levels->getElement(rows - 1, columns - 1) == 0);
+	visible = new Grid(rows, columns);
+	for (int row = 0; row < rows; row++) {
+		for (int col = 0; col < columns; col++) {
+			visible->setElement(row, col, 0);
+		}
+	}
 	playerRow = 0;
 	playerCol = 0;
 }
@@ -25,8 +31,10 @@ void Game::displayGrid()
 		for (short col = 0; col < levels->levels->columns; col++) {
 			if (row == playerRow && col == playerCol)
 				cout << setw(5) << "X";
-			else
+			else if (visible->getElement(row, col))
 				cout << setw(5) << levels->levels->getElement(row, col);
+			else
+				cout << setw(5) << "?";
 		}
 		cout << "\n";
 	}

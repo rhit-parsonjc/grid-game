@@ -12,5 +12,6 @@ private:
 	GameGrid* levels;
 	short playerRow;
 	short playerCol;
+	Grid* visible;
 };
 #endif
