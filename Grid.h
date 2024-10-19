@@ -10,6 +10,7 @@ private:
 	short rows;
 	short columns;
 	short* elements;
-	short get_value(short index);
+	short getValue(short index);
+	short getLastElement();
 };
 #endif
