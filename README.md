@@ -6,6 +6,6 @@ This is a console application that runs a grid game with the following rules:
 
 2. At each spot, you have to encounter an enemy.
 - If your level is higher than the enemy's, your level will be incremented by the enemy's level.
-- If your level is lower than the enemy's, you will be defeated and will restart at the top-left corner.
+- If your level is lower than or equal to the enemy's, you will be defeated and will restart at the top-left corner.
 
 3. The level of any enemy is not visible until you encounter the enemy.
